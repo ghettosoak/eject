@@ -1,0 +1,18 @@
+::selection {
+	background-color:rgb(255,255,255);
+	background-color:rgba(255,255,255, .5);
+	color:#444;
+}
+
+::-moz-selection {
+	background-color:rgb(255,255,255);
+	background-color:rgba(255,255,255, .5);
+	color:#444;
+}
+
+* { 
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box; 
+	font-weight:normal;
+}

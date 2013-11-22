@@ -1,0 +1,41 @@
+@mixin transition($time, $ease){
+	-webkit-transition: all $time $ease;
+	-moz-transition: all $time $ease;
+	-o-transition: all $time $ease;
+	transition: all $time $ease;
+}
+
+@mixin delay($time){
+	-webkit-transition-delay: $time;
+	-moz-transition-delay: $time;
+	-o-transition-delay: $time;
+	transition-delay: $time;
+}
+
+@mixin blur($howmuch){
+	filter: blur($howmuch);
+	// Browser Specific
+	-webkit-filter: blur($howmuch);
+	-moz-filter: blur($howmuch);
+	-o-filter: blur($howmuch);
+	-ms-filter: blur($howmuch);
+}
+
+@mixin transform($what){
+	-webkit-transform: $what;
+	-moz-transform:    $what;
+	-ms-transform:     $what;
+	-o-transform:      $what;
+	transform:         $what;
+}
+
+@mixin transform-origin($what){
+	-webkit-transform-origin: $what;
+	-ms-transform-origin: $what;
+	transform-origin: $what;
+}
+
+@mixin prfl{
+	position:relative;
+	float:left;
+}
