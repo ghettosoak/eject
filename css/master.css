@@ -239,7 +239,9 @@ html {
     margin-top: -400px;
     -webkit-transform-origin: 50% 5%;
     -ms-transform-origin: 50% 5%;
-    transform-origin: 50% 5%; }
+    transform-origin: 50% 5%;
+    overflow-y: hidden;
+    overflow-x: hidden; }
     .about .across {
       width: 25%;
       height: 100%;

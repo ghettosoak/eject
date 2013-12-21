@@ -3,6 +3,8 @@
 	top:50%;
 	margin-top:-400px;
 	@include transform-origin(50% 5%);
+	overflow-y:hidden;
+	overflow-x:hidden; 
 
 	.across{
 		width:25%;
