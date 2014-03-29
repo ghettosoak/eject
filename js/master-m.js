@@ -22,8 +22,8 @@ $(document).ready(function(){
 });
 
 $(window).load(function(){
-	$master.removeClass('wait')
-	heights(true);
+	$master.removeClass('wait');
+	setTimeout(function() { heights(true); }, 500);
 });
 
 $(window).resize(function(){
