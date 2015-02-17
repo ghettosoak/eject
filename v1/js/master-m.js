@@ -12,7 +12,7 @@ var $windowpane = $(window);
 var $master = $('.master');
 var $eject = $('.eject');
 var $top = $('.top');
-var $txt = $('.txt');
+var $txt;
 
 var mobileCheck;
 var txtHeight = [];
@@ -22,7 +22,7 @@ $(document).ready(function(){
 });
 
 $(window).load(function(){
-	$master.removeClass('wait');
+	$master.addClass('ready');
 	setTimeout(function() { heights(true); }, 500);
 });
 
@@ -33,7 +33,13 @@ $(window).resize(function(){
 
 $eject.on('click', function(){
 	$master.toggleClass('view');
-	if (!$master.hasClass('view')) $top.each(function(){ setTimeout(function(){ closer($top); }, 1000) })
+	if (!$master.hasClass('view')){
+		$top.each(function(){ 
+			setTimeout(function(){ 
+				closer($top); 
+			}, 1000) 
+		})
+	}
 })
 
 $top.on('click', function(){
@@ -50,6 +56,7 @@ function opener($thisone, theOffset){
 			'height':theOffset,//+30,
 			'margin-top':-theOffset/2
 		})
+		console.log('er?')
 	}else{
 		$thisone.addClass('heywereopen')
 		.next('.txt').addClass('open').css({
@@ -61,19 +68,40 @@ function opener($thisone, theOffset){
 }
 
 function closer($thisone){
-	$thisone.css({'margin-top':mobileCheck}).removeClass('heywereopen')
-	.next('.txt').removeClass('open').css({
-		'height':0,
-		'margin-top':0
-	})
+	if (mobileCheck){
+		$thisone.css({'margin-top':mobileCheck}).removeClass('heywereopen')
+		.next('.txt').removeClass('open').css({
+			'height':0,
+			'margin-top':0
+		})
+	}else{
+		$thisone.removeClass('heywereopen')
+		.next('.txt').removeClass('open').css({
+			'height':0
+		});	
+	}
 }
 
 function heights(isNew){
+	$txt = $('.txt')
 	$txt.each(function(e){
 		var $that = $(this);
-		txtHeight[e] = $that.outerHeight(true);
-		console.log(txtHeight);
-		isNew && $that.addClass('ready');
+		closer($that.prev('p'))
+		setTimeout(function(){
+			var priorHeight = $that.css('height');
+			$that.css({ 'height' : 'auto' });
+			txtHeight[e] = $that.outerHeight(true);
+			console.log(txtHeight[e]);
+			console.log('COCK')
+			$that.css({ 'height' : function(){
+					return isNew ? 0 : priorHeight
+				} 
+			});
+			
+			isNew && $that.addClass('ready');
+
+		},500);
+		
 	})
 }
 
